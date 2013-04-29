@@ -1,5 +1,9 @@
 traduction française de zpanelx
-16/01/2013
-Version alpha FR-V-0.0.2
-ne pas utilisé
-en cour de debugage
+
+29/04/2013
+
+Version FR-V-0.0.3 100% compatible avec la 10.0.2
+
+Aprées installation utilisez setzadmin pour restaurer le mot de passe zadmin et créer la nouvelle clès de sécurité
+
+setzadmin --set votremotdepasse

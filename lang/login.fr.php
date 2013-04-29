@@ -1,4 +1,4 @@
-<?php 	 
+<?php
 //---------------------------------------------------------
 // Theme zpanelx and défault
 //---------------------------------------------------------
@@ -24,6 +24,7 @@ define('TXT_DEFAULT_EMAIL', 'E-mail');
 define('TXT_DEFAULT_BACK_LOGIN', 'Retour &agrave; l\'identification');
 define('TXT_DEFAULT_POWERED_BY', 'Propuls&eacute; par');
 define('TXT_DEFAULT_SERVER_RUNING', 'Ce serveur est en cours d\'ex&eacute;cution');
+define('TXT_DEFAULT_SECURITY', 'Activer la Session Securis&eacute;e');
 //---------------------------------------------------------
 // Theme bootstrap
 //---------------------------------------------------------
@@ -53,5 +54,5 @@ define('TXT_CPANELX_LOGIN', 'Connexion');
 //---------------------------------------------------------
 // END
 //---------------------------------------------------------
- 	 
+ 
 ?>

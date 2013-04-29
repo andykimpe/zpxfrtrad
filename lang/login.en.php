@@ -1,4 +1,4 @@
-<?php 	 
+<?php
 //---------------------------------------------------------
 // Theme zpanelx and défault
 //---------------------------------------------------------
@@ -24,6 +24,7 @@ define('TXT_DEFAULT_EMAIL', 'Email');
 define('TXT_DEFAULT_BACK_LOGIN', 'Back to Login');
 define('TXT_DEFAULT_POWERED_BY', 'Powered by');
 define('TXT_DEFAULT_SERVER_RUNING', 'This server is running');
+define('TXT_DEFAULT_SECURITY', 'Enable Session Security');
 //---------------------------------------------------------
 // Theme bootstrap
 //---------------------------------------------------------
@@ -53,5 +54,5 @@ define('TXT_CPANELX_LOGIN', 'Log in');
 //---------------------------------------------------------
 // END
 //---------------------------------------------------------
- 	 
+ 
 ?>

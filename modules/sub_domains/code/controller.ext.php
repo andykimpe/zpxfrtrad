@@ -1,29 +1,29 @@
 <?php
 
 /**
- *
- * ZPanel - A Cross-Platform Open-Source Web Hosting Control panel.
- *
- * @package ZPanel
- * @version $Id$
- * @author Bobby Allen - ballen@zpanelcp.com
- * @copyright (c) 2008-2011 ZPanel Group - http://www.zpanelcp.com/
- * @license http://opensource.org/licenses/gpl-3.0.html GNU Public License v3
- *
- * This program (ZPanel) is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- */
+*
+* ZPanel - A Cross-Platform Open-Source Web Hosting Control panel.
+*
+* @package ZPanel
+* @version $Id$
+* @author Bobby Allen - ballen@zpanelcp.com
+* @copyright (c) 2008-2011 ZPanel Group - http://www.zpanelcp.com/
+* @license http://opensource.org/licenses/gpl-3.0.html GNU Public License v3
+*
+* This program (ZPanel) is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <http://www.gnu.org/licenses/>.
+*
+*/
 class module_controller {
 
     static $complete;
@@ -36,8 +36,8 @@ class module_controller {
     static $ok;
 
     /**
-     * The 'worker' methods.
-     */
+* The 'worker' methods.
+*/
     static function ListSubDomains($uid) {
         global $zdbh;
         $sql = "SELECT * FROM x_vhosts WHERE vh_acc_fk=:uid AND vh_deleted_ts IS NULL AND vh_type_in=2 ORDER BY vh_name_vc ASC";
@@ -111,8 +111,8 @@ class module_controller {
         global $zdbh;
         runtime_hook::Execute('OnBeforeDeleteSubDomain');
         $sql = $zdbh->prepare("UPDATE x_vhosts
-							   SET vh_deleted_ts=:time
-							   WHERE vh_id_pk=:id");
+SET vh_deleted_ts=:time
+WHERE vh_id_pk=:id");
         $time = time();
         $sql->bindParam(':time', $time);
         $sql->bindParam(':id', $id);
@@ -157,7 +157,7 @@ class module_controller {
                     closedir($handle);
                 }
             }
-			fs_director::CreateDirectory($vhost_path . "/lang/");
+fs_director::CreateDirectory($vhost_path . "/lang/");
             $lang = ctrl_options::GetOption('static_dir') . "/lang/";
             if (is_dir($lang)) {
                 if ($handle = @opendir($lang)) {
@@ -174,23 +174,23 @@ class module_controller {
             if ((!file_exists($vhost_path . "/index.html")) && (!file_exists($vhost_path . "/index.php")) && (!file_exists($vhost_path . "/index.htm"))) {
                 fs_filehandler::CopyFileSafe(ctrl_options::GetSystemOption('static_dir') . "pages/welcome.php", $vhost_path . "/index.php");
             }
-			if ((!file_exists($vhost_path . "/lang.php"))) {
-	        fs_filehandler::CopyFileSafe(ctrl_options::GetOption('static_dir') . "pages/lang.php", $vhost_path . "/lang.php");
-	        }
-			if ((!file_exists($vhost_path . "/.htaccess"))) {
-	        fs_filehandler::CopyFileSafe(ctrl_options::GetOption('static_dir') . "pages/.htaccess", $vhost_path . "/.htaccess");
-	        }
+if ((!file_exists($vhost_path . "/lang.php"))) {
+fs_filehandler::CopyFileSafe(ctrl_options::GetOption('static_dir') . "pages/lang.php", $vhost_path . "/lang.php");
+}
+if ((!file_exists($vhost_path . "/.htaccess"))) {
+fs_filehandler::CopyFileSafe(ctrl_options::GetOption('static_dir') . "pages/.htaccess", $vhost_path . "/.htaccess");
+}
             // If all has gone well we need to now create the domain in the database...
             $sql = $zdbh->prepare("INSERT INTO x_vhosts (vh_acc_fk,
-														 vh_name_vc,
-														 vh_directory_vc,
-														 vh_type_in,
-														 vh_created_ts) VALUES (
-														 :userid,
-														 :domain,
-														 :destination,
-														 2,
-														 :time)"); //CLEANER FUNCTION ON $domain and $homedirectory_to_use (Think I got it?)
+vh_name_vc,
+vh_directory_vc,
+vh_type_in,
+vh_created_ts) VALUES (
+:userid,
+:domain,
+:destination,
+2,
+:time)"); //CLEANER FUNCTION ON $domain and $homedirectory_to_use (Think I got it?)
             $sql->bindParam(':userid', $currentuser['userid']);
             $sql->bindParam(':domain', $domain);
             $sql->bindParam(':destination', $destination);
@@ -276,18 +276,18 @@ class module_controller {
     static function SetWriteApacheConfigTrue() {
         global $zdbh;
         $sql = $zdbh->prepare("UPDATE x_settings
-								SET so_value_tx='true'
-								WHERE so_name_vc='apache_changed'");
+SET so_value_tx='true'
+WHERE so_name_vc='apache_changed'");
         $sql->execute();
     }
 
     /**
-     * End 'worker' methods.
-     */
+* End 'worker' methods.
+*/
 
     /**
-     * Webinterface sudo methods.
-     */
+* Webinterface sudo methods.
+*/
     static function getSubDomainList() {
         $currentuser = ctrl_users::GetUserDetail();
         $res = array();
@@ -352,7 +352,7 @@ class module_controller {
     static function doDeleteSubDomain() {
         global $controller;
         runtime_csfr::Protect();
-//PP      $currentuser = ctrl_users::GetUserDetail();  assignment never used
+//PP $currentuser = ctrl_users::GetUserDetail(); assignment never used
         $formvars = $controller->GetAllControllerRequests('FORM');
         if (isset($formvars['inDelete'])) {
             if (self::ExecuteDeleteSubDomain($formvars['inDelete'])) {
@@ -417,7 +417,7 @@ class module_controller {
         } else {
             $used = ctrl_users::GetQuotaUsages('subdomains', $currentuser['userid']);
             $free = max($maximum - $used, 0);
-            return  '<img src="etc/lib/pChart2/zpanel/z3DPie.php?score=' . $free . '::' . $used
+            return '<img src="etc/lib/pChart2/zpanel/z3DPie.php?score=' . $free . '::' . $used
                   . '&labels=Free: ' . $free . '::Used: ' . $used
                   . '&legendfont=verdana&legendfontsize=8&imagesize=240::190&chartsize=120::90&radius=100&legendsize=150::160"'
                   . ' alt="'.ui_language::translate('Pie chart').'"/>';
@@ -432,7 +432,7 @@ class module_controller {
         } else {
             return '<td><font color="orange">' . ui_language::translate("Pending") . '</font></td>'
                  . '<td><a href="#" class="help_small" id="help_small_' . $id . '_a"'
-                 . 'title="' . ui_language::translate('Your domain will become active at the next scheduled update.  This can take up to one hour.') . '">'
+                 . 'title="' . ui_language::translate('Your domain will become active at the next scheduled update. This can take up to one hour.') . '">'
                  . '<img src="/modules/' . $controller->GetControllerRequest('URL', 'module') . '/assets/help_small.png" border="0" /></a></td>';
         }
     }
@@ -464,8 +464,8 @@ class module_controller {
     }
 
     /**
-     * Webinterface sudo methods.
-     */
+* Webinterface sudo methods.
+*/
 }
 
 ?>

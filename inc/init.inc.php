@@ -1,23 +1,27 @@
 <?php
-
-/**
- * The web gui initiation script.
- * @package zpanelx
- * @subpackage core
- * @author Bobby Allen (ballen@zpanelcp.com)
- * @copyright ZPanel Project (http://www.zpanelcp.com/)
- * @link http://www.zpanelcp.com/
- * @license GPL (http://www.gnu.org/licenses/gpl.html)
- */
 if (!isset($Langue)) {
 $Langue = explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
 $Langue = strtolower(substr(chop($Langue[0]),0,2));
 }
- 
+if (file_exists("lang/login.".$Langue.".php")) {
+include("lang/login.".$Langue.".php");
+} else {
+include("lang/login.en.php");
+}
+
+/**
+* The web gui initiation script.
+* @package zpanelx
+* @subpackage core
+* @author Bobby Allen (ballen@zpanelcp.com)
+* @copyright ZPanel Project (http://www.zpanelcp.com/)
+* @link http://www.zpanelcp.com/
+* @license GPL (http://www.gnu.org/licenses/gpl.html)
+*/
 global $controller, $zdbh, $zlo;
 $controller = new runtime_controller();
 
-$zlo->method = ctrl_options::GetOption('logmode');
+$zlo->method = ctrl_options::GetSystemOption('logmode');
 if ($zlo->hasInfo()) {
     $zlo->writeLog();
     $zlo->reset();
@@ -38,25 +42,35 @@ if (isset($_GET['returnsession'])) {
     header("location: ./");
     exit;
 }
-if (($_POST['panel']=='reset2')) { 
-if (file_exists("lang/reset2.".$Langue.".php")) { 
-include("lang/reset2.".$Langue.".php");
-} else { 
-include("/zpanel/panel/lang/reset2.en.php");
-} } else { 
-if (file_exists("lang/".$Langue.".php")) { 
+
+if (file_exists("lang/".$Langue.".php")) {
 include("lang/".$Langue.".php");
-} else { 
-include("/zpanel/panel/lang/en.php");
-}
+} else {
+include("lang/en.php");
 }
 
 
 
 if (isset($_POST['inConfEmail'])) {
-    $result = $zdbh->query("SELECT ac_id_pk FROM x_accounts WHERE ac_email_vc = '" . $_POST['inConfEmail'] . "' AND ac_resethash_tx = '" . $_GET['resetkey'] . "' AND ac_resethash_tx IS NOT NULL")->Fetch();
+    runtime_csfr::Protect();
+    $sql = $zdbh->prepare("SELECT ac_id_pk FROM x_accounts WHERE ac_email_vc = :email AND ac_resethash_tx = :resetkey AND ac_resethash_tx IS NOT NULL");
+    $sql->bindParam(':email', $_POST['inConfEmail']);
+    $sql->bindParam(':resetkey', $_GET['resetkey']);
+    $sql->execute();
+    $result = $sql->fetch();
+
+    $crypto = new runtime_hash;
+    $crypto->SetPassword($_POST['inNewPass']);
+    $randomsalt = $crypto->RandomSalt();
+    $crypto->SetSalt($randomsalt);
+    $secure_password = $crypto->CryptParts($crypto->Crypt())->Hash;
+
     if ($result) {
-        $zdbh->exec("UPDATE x_accounts SET ac_resethash_tx = '', ac_pass_vc= '" . md5($_POST['inNewPass']) . "' WHERE ac_id_pk=" . $result['ac_id_pk'] . "");
+        $sql = $zdbh->prepare("UPDATE x_accounts SET ac_resethash_tx = '', ac_pass_vc = :password, ac_passsalt_vc = :salt WHERE ac_id_pk = :uid");
+        $sql->bindParam(':password', $secure_password);
+        $sql->bindParam(':salt', $randomsalt);
+        $sql->bindParam(':uid', $result['ac_id_pk']);
+        $sql->execute();
         runtime_hook::Execute('OnSuccessfulPasswordReset');
     } else {
         runtime_hook::Execute('OnFailedPasswordReset');
@@ -66,19 +80,40 @@ if (isset($_POST['inConfEmail'])) {
 }
 
 if (isset($_POST['inUsername'])) {
-    if (!isset($_POST['inRemember'])) {
-        $rememberdetails = false;
-    } else {
-        $rememberdetails = true;
-    }
-    if (!ctrl_auth::Authenticate($_POST['inUsername'], md5($_POST['inPassword']), $rememberdetails, false)) {
+    if (ctrl_options::GetSystemOption('login_csfr') == 'false')
+        runtime_csfr::Protect();
+
+    $rememberdetails = isset($_POST['inRemember']);
+    $inSessionSecuirty = isset($_POST['inSessionSecuirty']);
+
+    $sql = $zdbh->prepare("SELECT ac_passsalt_vc FROM x_accounts WHERE ac_user_vc = :username");
+    $sql->bindParam(':username', $_POST['inUsername']);
+    $sql->execute();
+    $result = $sql->fetch();
+    $crypto = new runtime_hash;
+    $crypto->SetPassword($_POST['inPassword']);
+    $crypto->SetSalt($result['ac_passsalt_vc']);
+    $secure_password = $crypto->CryptParts($crypto->Crypt())->Hash;
+
+    if (!ctrl_auth::Authenticate($_POST['inUsername'], $secure_password, $rememberdetails, false, $inSessionSecuirty)) {
         header("location: ./?invalidlogin");
         exit();
     }
 }
 
 if (isset($_COOKIE['zUser'])) {
-    ctrl_auth::Authenticate($_COOKIE['zUser'], $_COOKIE['zPass'], false, true);
+    
+    if (isset($_COOKIE['zSec'])) {
+        if($_COOKIE['zSec'] == false) {
+            $secure = false;
+        } else {
+            $secure = true;
+        }
+    }else{
+        $secure = true;
+    }
+    
+    ctrl_auth::Authenticate($_COOKIE['zUser'], $_COOKIE['zPass'], false, true, $secure);
 }
 
 if (!isset($_SESSION['zpuid'])) {
