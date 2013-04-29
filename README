@@ -7,3 +7,13 @@ Version FR-V-0.0.3 100% compatible avec la 10.0.2
 Aprées installation utilisez setzadmin pour restaurer le mot de passe zadmin et créer la nouvelle clès de sécurité
 
 setzadmin --set votremotdepasse
+
+French translation of zpanelx
+
+29/04/2013
+
+Version 0.0.3 FR-V-0.0.3 100% available with 10.0.2
+
+Afterwords Installation setzadmin use to restore the word zadmin password and create new security key
+
+setzadmin - set yourpassword
