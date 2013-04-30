@@ -1,4 +1,4 @@
-traduction française de zpanelx
+traduction française de zpanelx inclut langue français et anglais avec detection automatique de la langue du visiteur
 
 29/04/2013
 
@@ -8,7 +8,7 @@ Aprées installation utilisez setzadmin pour restaurer le mot de passe zadmin et
 
 setzadmin --set votremotdepasse
 
-French translation of zpanelx
+French translation of zpanelx includes French and English language with automatic detection of the visitor's language
 
 29/04/2013
 
