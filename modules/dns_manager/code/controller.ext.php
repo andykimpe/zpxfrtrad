@@ -885,7 +885,7 @@ dn_created_ts) VALUES (
 'CNAME',
 'www',
 3600,
-'@',
+:vh_name_vc,
 NULL,
 NULL,
 NULL,
@@ -913,14 +913,14 @@ dn_created_ts) VALUES (
 'CNAME',
 'ftp',
 3600,
-'@',
+:vh_name_vc,
 NULL,
 NULL,
 NULL,
 :time)");
         $sql->bindParam(':userID', $userID);
         $sql->bindParam(':vh_name_vc', $domainName['vh_name_vc']);
-        $sql->bindParam(':domainID', $domainID);
+        $sql->bindParam(':domainID', $domainID);        
         $time = time();
         $sql->bindParam(':time', $time);
         $sql->execute();
