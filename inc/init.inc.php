@@ -43,12 +43,6 @@ if (isset($_GET['returnsession'])) {
     exit;
 }
 
-if (file_exists("lang/".$Langue.".php")) {
-include("lang/".$Langue.".php");
-} else {
-include("lang/en.php");
-}
-
 
 
 if (isset($_POST['inConfEmail'])) {
