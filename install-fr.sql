@@ -508,3 +508,5 @@ INSERT INTO `x_translations` (`tr_id_pk`, `tr_en_tx`, `tr_German_tx`, `tr_French
 (559, 'FTP Client Login', NULL, 'Connexion au client FTP'),
 (560, 'Please choose the FTP account you want to log in with...', NULL, 'Veuillez choisir le compte FTP sur lequel vous souhaitez vous authentifier.'),
 (561, 'You have no FTP accounts at this time.', NULL, 'Aucun compte FTP.');
+
+UPDATE `zpanel_core`.`x_profiles` SET `ud_language_vc` = 'French' WHERE `x_profiles`.`ud_id_pk` =1;
