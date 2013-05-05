@@ -70,3 +70,5 @@ insert into `x_translations`(`tr_id_pk`,`tr_en_tx`,`tr_de_tx`) values (120,'Curr
 insert into `x_translations`(`tr_id_pk`,`tr_en_tx`,`tr_de_tx`) values (121,'Changes to your account settings have been saved successfully!','Änderungen an Ihrem Konto-Einstellungen wurden erfolgreich gespeichert!');
 insert into `x_translations`(`tr_id_pk`,`tr_en_tx`,`tr_de_tx`) values (122,'Update Account','Aktualisierung Konto');
 insert into `x_translations`(`tr_id_pk`,`tr_en_tx`,`tr_de_tx`) values (123,'Enter your account details','Geben Sie Ihre Kontodaten');
+
+UPDATE `zpanel_core`.`x_profiles` SET `ud_language_vc` = 'en' WHERE `x_profiles`.`ud_id_pk` =1;
