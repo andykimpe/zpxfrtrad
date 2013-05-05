@@ -1,5 +1,5 @@
-USE zpanel_core ;
-DROP TABLE x_translations ;
+USE `zpanel_core` ;
+DROP TABLE IF EXISTS `x_translations`;
 CREATE TABLE IF NOT EXISTS `x_translations` (
 `tr_id_pk` int(11) NOT NULL AUTO_INCREMENT,
 `tr_en_tx` text,
