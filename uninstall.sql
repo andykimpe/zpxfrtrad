@@ -72,3 +72,5 @@ insert into `x_translations`(`tr_id_pk`,`tr_en_tx`,`tr_de_tx`) values (122,'Upda
 insert into `x_translations`(`tr_id_pk`,`tr_en_tx`,`tr_de_tx`) values (123,'Enter your account details','Geben Sie Ihre Kontodaten');
 
 UPDATE `zpanel_core`.`x_profiles` SET `ud_language_vc` = 'en' WHERE `x_profiles`.`ud_id_pk` =1;
+
+UPDATE `zpanel_core`.`x_accounts` SET `ac_notice_tx` = 'Welcome to your new ZPanel installation! You can remove this message from the Client Notice Manager module. This module allows you to notify your clients of service outages upgrades and new features etc :-)' WHERE `x_accounts`.`ac_id_pk` =1;
