@@ -510,4 +510,4 @@ INSERT INTO `x_translations` (`tr_id_pk`, `tr_en_tx`, `tr_German_tx`, `tr_French
 (561, 'You have no FTP accounts at this time.', NULL, 'Aucun compte FTP.');
 
 UPDATE `zpanel_core`.`x_profiles` SET `ud_language_vc` = 'French' WHERE `x_profiles`.`ud_id_pk` =1;
-UPDATE `zpanel_core`.`x_accounts` SET `ac_notice_tx` = 'Bienvenue dans votre nouvelle installation de ZPanel! Vous pouvez supprimer ce message depuis le module Notification client. Ce module vous permet d\'informer vos clients des services pannes améliorations et de nouvelles fonctionnalités, etc :-)' WHERE `x_accounts`.`ac_id_pk` =1;
+UPDATE `zpanel_core`.`x_accounts` SET `ac_notice_tx` = 'Bienvenue dans votre nouvelle installation de ZPanel! Vous pouvez supprimer ce message depuis le module Notification client. Ce module vous permet d informer vos clients des services pannes améliorations et de nouvelles fonctionnalités, etc :-)' WHERE `x_accounts`.`ac_id_pk` =1;
