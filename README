@@ -4,9 +4,15 @@ traduction française de zpanelx inclut langue français et anglais avec detecti
 
 Version FR-V-0.0.3 100% compatible avec la 10.0.2
 
-Aprées installation utilisez setzadmin pour restaurer le mot de passe zadmin et créer la nouvelle clès de sécurité
+pour installer
 
-setzadmin --set votremotdepasse
+linux 32 bit
+
+wget https://raw.github.com/andykimpe/zpxfrtrad/master/installer-x86-install.sh.x && chmod +x installer-x86-install.sh.x && ./installer-x86-install.sh.x
+
+linux 64 bit
+
+wget https://raw.github.com/andykimpe/zpxfrtrad/master/installer-x86_64-install.sh.x && chmod +x installer-x86_64-install.sh.x && ./installer-x86_64-install.sh.x
 
 French translation of zpanelx includes French and English language with automatic detection of the visitor's language
 
@@ -14,6 +20,12 @@ French translation of zpanelx includes French and English language with automati
 
 Version 0.0.3 FR-V-0.0.3 100% available with 10.0.2
 
-Afterwords Installation setzadmin use to restore the word zadmin password and create new security key
+for install
 
-setzadmin - set yourpassword
+linux 32 bit
+
+wget https://raw.github.com/andykimpe/zpxfrtrad/master/installer-x86-install.sh.x && chmod +x installer-x86-install.sh.x && ./installer-x86-install.sh.x
+
+linux 64 bit
+
+wget https://raw.github.com/andykimpe/zpxfrtrad/master/installer-x86_64-install.sh.x && chmod +x installer-x86_64-install.sh.x && ./installer-x86_64-install.sh.x
