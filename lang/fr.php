@@ -18,8 +18,9 @@ if (isset($_POST['inForgotPassword'])) {
         $phpmailer = new sys_email();
         $phpmailer->Subject = "Modification du mot de passe de connexion à ZpanelX";
         $phpmailer->Body = "Salut " . $result['ac_user_vc'] . ",
-Vous ou quelqu'un se faisant passer pour vous a demand� un lien pour r�initialiser le mot de passe de connexion pour votre panel d' h�bergement web � l'adresse suivante: " . $protocol . ctrl_options::GetSystemOption('zpanel_domain') . "
-Si vous souhaitez proc�der � la r�initialisation du mot de passe sur votre compte s'il vous pla�t utiliser le lien ci-dessous pour �tre redirig� vers la page de r�initialisation de mot de passe.
+Vous ou quelqu'un se faisant passer pour vous a demandé un lien pour réinitialiser le mot de passe pour vous connecter à votre espace d\'hébergement ZpanelX à l'adresse suivante: " . $protocol . ctrl_options::GetSystemOption('zpanel_domain') . "
+dans le cas ou ce ne serait pas vous à l\'origine de cette demande veillez ignorer cette émail.
+pour réinitialiser votre mot de passe, s'il vous plaît utiliser le lien ci-dessous pour être redirigé vers cette page.
 " . $protocol . ctrl_options::GetSystemOption('zpanel_domain') . "/?resetkey=" . $randomkey . "
 
 
