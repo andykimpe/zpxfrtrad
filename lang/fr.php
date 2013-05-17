@@ -16,10 +16,10 @@ if (isset($_POST['inForgotPassword'])) {
             $protocol = 'http://';
         }
         $phpmailer = new sys_email();
-        $phpmailer->Subject = "Restaurer le mot de passe du panel";
+        $phpmailer->Subject = "Modification du mot de passe de connexion Ã  ZpanelX";
         $phpmailer->Body = "Salut " . $result['ac_user_vc'] . ",
-Vous ou quelqu'un se faisant passer pour vous a demandé un lien pour réinitialiser le mot de passe de connexion pour votre panel d' hébergement web à l'adresse suivante: " . $protocol . ctrl_options::GetSystemOption('zpanel_domain') . "
-Si vous souhaitez procéder à la réinitialisation du mot de passe sur votre compte s'il vous plaît utiliser le lien ci-dessous pour être redirigé vers la page de réinitialisation de mot de passe.
+Vous ou quelqu'un se faisant passer pour vous a demandï¿½ un lien pour rï¿½initialiser le mot de passe de connexion pour votre panel d' hï¿½bergement web ï¿½ l'adresse suivante: " . $protocol . ctrl_options::GetSystemOption('zpanel_domain') . "
+Si vous souhaitez procï¿½der ï¿½ la rï¿½initialisation du mot de passe sur votre compte s'il vous plaï¿½t utiliser le lien ci-dessous pour ï¿½tre redirigï¿½ vers la page de rï¿½initialisation de mot de passe.
 " . $protocol . ctrl_options::GetSystemOption('zpanel_domain') . "/?resetkey=" . $randomkey . "
 
 
