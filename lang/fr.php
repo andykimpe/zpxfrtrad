@@ -20,7 +20,7 @@ if (isset($_POST['inForgotPassword'])) {
         $phpmailer->Body = "Bonjour " . $result['ac_user_vc'] . ",
 Vous ou quelqu'un se faisant passer pour vous a demandé un lien pour réinitialiser le mot de passe pour vous connecter à votre espace d'hébergement ZpanelX à l'adresse suivante: " . $protocol . ctrl_options::GetSystemOption('zpanel_domain') . "
 dans le cas ou ce ne serait pas vous à l'origine de cette demande veillez ignorer cette émail.
-pour réinitialiser votre mot de passe, s'il vous plaît utiliser le lien ci-dessous pour être redirigé vers cette page.
+Pour réinitialiser votre mot de passe, s'il vous plaît utiliser le lien ci-dessous pour être redirigé vers cette page.
 " . $protocol . ctrl_options::GetSystemOption('zpanel_domain') . "/?resetkey=" . $randomkey . "
 
 
