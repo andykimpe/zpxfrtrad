@@ -10,14 +10,14 @@ include("lang/login.en.php");
 }
 
 /**
-* The web gui initiation script.
-* @package zpanelx
-* @subpackage core
-* @author Bobby Allen (ballen@zpanelcp.com)
-* @copyright ZPanel Project (http://www.zpanelcp.com/)
-* @link http://www.zpanelcp.com/
-* @license GPL (http://www.gnu.org/licenses/gpl.html)
-*/
+ * The web gui initiation script.
+ * @package zpanelx
+ * @subpackage core
+ * @author Bobby Allen (ballen@zpanelcp.com)
+ * @copyright ZPanel Project (http://www.zpanelcp.com/)
+ * @link http://www.zpanelcp.com/
+ * @license GPL (http://www.gnu.org/licenses/gpl.html)
+ */
 global $controller, $zdbh, $zlo;
 $controller = new runtime_controller();
 
@@ -43,13 +43,11 @@ if (isset($_GET['returnsession'])) {
     exit;
 }
 
-
 if (file_exists("lang/".$Langue.".php")) {
 include("lang/".$Langue.".php");
 } else {
 include("lang/en.php");
 }
-
 
 if (isset($_POST['inConfEmail'])) {
     runtime_csfr::Protect();
