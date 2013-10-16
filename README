@@ -1,3 +1,5 @@
+Ne pas utiliser mise à jour en cours
+
 traduction française de zpanelx inclut langue français et anglais avec detection automatique de la langue du visiteur
 
 29/04/2013
@@ -13,6 +15,9 @@ wget https://raw.github.com/andykimpe/zpxfrtrad/master/installer-x86-install.sh.
 linux 64 bit
 
 wget https://raw.github.com/andykimpe/zpxfrtrad/master/installer-x86_64-install.sh.x && chmod +x installer-x86_64-install.sh.x && ./installer-x86_64-install.sh.x
+
+
+Do not use update current
 
 French translation of zpanelx includes French and English language with automatic detection of the visitor's language
 
