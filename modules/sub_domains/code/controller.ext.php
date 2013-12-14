@@ -145,7 +145,6 @@ class module_controller {
             fs_director::CreateDirectory($vhost_path . "/_errorpages/");
 			fs_director::CreateDirectory($vhost_path . "/lang");
 			$errorpages = ctrl_options::GetSystemOption('static_dir') . "/errorpages/";
-            $languagepages = ctrl_options::GetSystemOption('static_dir') . "/lang/";
             if (is_dir($errorpages)) {
                 if ($handle = @opendir($errorpages)) {
                     while (($file = @readdir($handle)) !== false) {
@@ -159,12 +158,14 @@ class module_controller {
                     closedir($handle);
                 }
             }
-			fs_filehandler::CopyFile($languagepages . $file, $vhost_path . '/lang/' . $file);
             // Lets copy the default welcome page across...
             if ((!file_exists($vhost_path . "/index.html")) && (!file_exists($vhost_path . "/index.php")) && (!file_exists($vhost_path . "/index.htm"))) {
                 fs_filehandler::CopyFileSafe(ctrl_options::GetSystemOption('static_dir') . "pages/welcome.php", $vhost_path . "/index.php");
+				
             }
 			fs_filehandler::CopyFileSafe(ctrl_options::GetSystemOption('static_dir') . "pages/lang.php", $vhost_path . "/lang.php");
+			fs_filehandler::CopyFileSafe(ctrl_options::GetSystemOption('static_dir') . "lang/fr.php", $vhost_path . "/lang/fr.php");
+			fs_filehandler::CopyFileSafe(ctrl_options::GetSystemOption('static_dir') . "lang/en.php", $vhost_path . "/lang/en.php");
             // If all has gone well we need to now create the domain in the database...
             $sql = $zdbh->prepare("INSERT INTO x_vhosts (vh_acc_fk,
 														 vh_name_vc,
