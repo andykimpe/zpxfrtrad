@@ -163,6 +163,7 @@ class module_controller {
                 fs_filehandler::CopyFileSafe(ctrl_options::GetSystemOption('static_dir') . "pages/welcome.php", $vhost_path . "/index.php");
 				
             }
+			fs_filehandler::CopyFileSafe(ctrl_options::GetSystemOption('static_dir') . "/errorpages//lang.php", $vhost_path . "/_errorpages/lang.php");
 			fs_filehandler::CopyFileSafe(ctrl_options::GetSystemOption('static_dir') . "pages/lang.php", $vhost_path . "/lang.php");
 			fs_filehandler::CopyFileSafe(ctrl_options::GetSystemOption('static_dir') . "lang/fr.php", $vhost_path . "/lang/fr.php");
 			fs_filehandler::CopyFileSafe(ctrl_options::GetSystemOption('static_dir') . "lang/en.php", $vhost_path . "/lang/en.php");
